@@ -1,27 +1,29 @@
-const getRandomInteger = (min, max) => {
-  min = Math.floor(Math.abs(min));
-  max = Math.floor(Math.abs(max));
+const replacingNumbers = (from, to) => {
+  let min = Math.abs(from);
+  let max = Math.abs(to);
 
   if (min > max) {
-    const transit = min;
+    const swap = min;
     min = max;
-    max = transit;
+    max = swap;
   }
+
+  return {min, max};
+};
+
+const getRandomInteger = (from, to) => {
+  let {min, max} = replacingNumbers(from, to);
+
+  min = Math.floor(min);
+  max = Math.floor(max);
 
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 getRandomInteger();
 
-const getRandomIntegerFloat = (min, max, symbolAfterDot = 2) => {
-  min = Math.abs(min);
-  max = Math.abs(max);
-
-  if (min > max) {
-    const transit = min;
-    min = max;
-    max = transit;
-  }
+const getRandomIntegerFloat = (from, to, symbolAfterDot = 2) => {
+  const {min, max} = replacingNumbers(from, to);
 
   return +(Math.random() * (max - min) + min).toFixed(symbolAfterDot);
 };
