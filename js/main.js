@@ -92,4 +92,4 @@ const getSimilarAd = () => {
 
 const similarAds = new Array(QUANTITY_OF_SIMILAR_ADS).fill('').map(getSimilarAd);
 
-similarAds();
+similarAds;
