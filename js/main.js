@@ -45,12 +45,10 @@ const photos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/ke
 // Копирует массив и перемешивает его.
 const shuffleArray = (array) => {
   const arrayCopy = array.slice();
-  let j;
-  let swap;
 
   for(let i = arrayCopy.length -1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1));
-    swap = arrayCopy[j];
+    const j = Math.floor(Math.random() * (i + 1));
+    const swap = arrayCopy[j];
     arrayCopy[j] = arrayCopy[i];
     arrayCopy[i] = swap;
   }
@@ -92,6 +90,6 @@ const getSimilarAd = () => {
   };
 };
 
-const similarAds = new Array(QUANTITY_OF_SIMILAR_ADS).fill('').map(() => getSimilarAd());
+const similarAds = new Array(QUANTITY_OF_SIMILAR_ADS).fill('').map(getSimilarAd);
 
 similarAds();
