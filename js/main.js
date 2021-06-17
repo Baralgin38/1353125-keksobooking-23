@@ -1,5 +1,5 @@
 import {getSimilarAd} from './data.js';
-import {generateSimilarAds} from './generate-similar-ads.js';
+import {generateSimilarAd} from './generate-similar-ad.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
 
@@ -14,4 +14,4 @@ const canvas = document.querySelector('#map-canvas');
 //   similarAdsFragment.append(generateSimilarAds(ad, cardAdTemplate));
 // });
 
-canvas.append(generateSimilarAds(similarAds[0], cardAdTemplate));
+canvas.append(generateSimilarAd(similarAds[0], cardAdTemplate));
