@@ -70,7 +70,7 @@ const addPhotoOnCardAd = (parentElement, photos) => {
   }
 };
 
-const generateSimilarAds = ({author, offer}, template) => {
+const generateSimilarAd = ({author, offer}, template) => {
   const cardAd = template.cloneNode(true);
 
   cardAd.querySelector('.popup__title').textContent = offer.title;
@@ -93,4 +93,4 @@ const generateSimilarAds = ({author, offer}, template) => {
   return cardAd;
 };
 
-export {generateSimilarAds};
+export {generateSimilarAd};
