@@ -18,12 +18,12 @@ const makeWording = (quantity, {singular, plular, pluralDeclension}) => {
   if (stringQuantity[stringQuantity.length - 1] === '1' || stringQuantity[stringQuantity.length - 2] === '1') {
     if (stringQuantity.length > 1 && stringQuantity[stringQuantity.length - 2] === '1') {
       return `${quantity} ${plular}`;
-    }else {
+    } else {
       return `${quantity} ${singular}`;
     }
-  }else if (stringQuantity[stringQuantity.length - 1] > 1 && stringQuantity[stringQuantity.length - 1] < 5) {
+  } else if (stringQuantity[stringQuantity.length - 1] > 1 && stringQuantity[stringQuantity.length - 1] < 5) {
     return `${quantity} ${pluralDeclension}`;
-  }else {
+  } else {
     return `${quantity} ${plular}`;
   }
 };
@@ -84,22 +84,30 @@ const generateSimilarAd = ({author, offer}, template) => {
   cardAd.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   cardAd.querySelector('.popup__avatar').src = author.avatar;
 
-  if (!offer.features) {
+  if(offer.features) {
+    if(offer.features.length > 0) {
+      addFeaturesOnCardAd(cardAdFeatures, offer.features);
+    } else {
+      cardAdFeatures.remove();
+    }
+  } else {
     cardAdFeatures.remove();
-  }else{
-    addFeaturesOnCardAd(cardAdFeatures, offer.features);
   }
 
   if (!offer.description) {
     cardAdDescription.remove();
-  }else{
+  } else {
     cardAdDescription.textContent = offer.description;
   }
 
-  if (!offer.photos) {
+  if(offer.photos) {
+    if(offer.photos.length > 0) {
+      addPhotoOnCardAd(cardAdPhotos, offer.photos);
+    } else {
+      cardAdPhotos.remove();
+    }
+  } else {
     cardAdPhotos.remove();
-  }else{
-    addPhotoOnCardAd(cardAdPhotos, offer.photos);
   }
 
   return cardAd;
