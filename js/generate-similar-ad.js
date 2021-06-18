@@ -84,12 +84,8 @@ const generateSimilarAd = ({author, offer}, template) => {
   cardAd.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
   cardAd.querySelector('.popup__avatar').src = author.avatar;
 
-  if(offer.features) {
-    if(offer.features.length > 0) {
-      addFeaturesOnCardAd(cardAdFeatures, offer.features);
-    } else {
-      cardAdFeatures.remove();
-    }
+  if(offer.features && offer.features.length > 0) {
+    addFeaturesOnCardAd(cardAdFeatures, offer.features);
   } else {
     cardAdFeatures.remove();
   }
@@ -100,12 +96,8 @@ const generateSimilarAd = ({author, offer}, template) => {
     cardAdDescription.textContent = offer.description;
   }
 
-  if(offer.photos) {
-    if(offer.photos.length > 0) {
-      addPhotoOnCardAd(cardAdPhotos, offer.photos);
-    } else {
-      cardAdPhotos.remove();
-    }
+  if(offer.photos && offer.photos.length > 0) {
+    addPhotoOnCardAd(cardAdPhotos, offer.photos);
   } else {
     cardAdPhotos.remove();
   }
