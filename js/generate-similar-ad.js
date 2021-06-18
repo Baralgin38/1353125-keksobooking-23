@@ -72,6 +72,9 @@ const addPhotoOnCardAd = (parentElement, photos) => {
 
 const generateSimilarAd = ({author, offer}, template) => {
   const cardAd = template.cloneNode(true);
+  const cardAdFeatures = cardAd.querySelector('.popup__features');
+  const cardAdDescription = cardAd.querySelector('.popup__description');
+  const cardAdPhotos = cardAd.querySelector('.popup__photos');
 
   cardAd.querySelector('.popup__title').textContent = offer.title;
   cardAd.querySelector('.popup__text--address').textContent = offer.address;
@@ -79,15 +82,24 @@ const generateSimilarAd = ({author, offer}, template) => {
   cardAd.querySelector('.popup__type').textContent = getHousingTypeOfAd(offer.type);
   cardAd.querySelector('.popup__text--capacity').textContent = `${getQuantityRooms(offer.rooms)} для ${getQuantityGuests(offer.guests)}`;
   cardAd.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
-  addFeaturesOnCardAd(cardAd.querySelector('.popup__features'), offer.features);
-  cardAd.querySelector('.popup__description').textContent = offer.description;
-  addPhotoOnCardAd(cardAd.querySelector('.popup__photos'), offer.photos);
   cardAd.querySelector('.popup__avatar').src = author.avatar;
 
-  for(let i = cardAd.children.length - 1; i >= 0; i--) {
-    if (cardAd.children[i].innerHTML === '') {
-      cardAd.children[i].hidden = true;
-    }
+  if (!offer.features) {
+    cardAdFeatures.remove();
+  }else{
+    addFeaturesOnCardAd(cardAdFeatures, offer.features);
+  }
+
+  if (!offer.description) {
+    cardAdDescription.remove();
+  }else{
+    cardAdDescription.textContent = offer.description;
+  }
+
+  if (!offer.photos) {
+    cardAdPhotos.remove();
+  }else{
+    addPhotoOnCardAd(cardAdPhotos, offer.photos);
   }
 
   return cardAd;
