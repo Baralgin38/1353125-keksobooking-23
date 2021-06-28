@@ -8,7 +8,7 @@ const formElementsDeactivating = (form, element, isDeactivated) => {
   }
 };
 
-const changeActivityAdForm = (form, isDeactivated) => {
+const isDeactivatedAdForm = (form, isDeactivated) => {
   if (isDeactivated) {
     form.classList.add('ad-form--disabled');
   } else {
@@ -17,7 +17,7 @@ const changeActivityAdForm = (form, isDeactivated) => {
   formElementsDeactivating(form, 'fieldset', isDeactivated);
 };
 
-const changeActivityMapFiltersForm = (form, isDeactivated) => {
+const isDeactivatedMapFiltersForm = (form, isDeactivated) => {
   if (isDeactivated) {
     form.classList.add('map__filters--disabled');
   } else {
@@ -84,8 +84,8 @@ const setDependencyBetweenHousingTypeAndPriceInput = (type, input) => {
 };
 
 export {
-  changeActivityAdForm,
-  changeActivityMapFiltersForm,
+  isDeactivatedAdForm,
+  isDeactivatedMapFiltersForm,
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setDependencyBetweenHousingTypeAndPriceInput
