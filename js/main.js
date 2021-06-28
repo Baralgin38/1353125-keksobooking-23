@@ -37,4 +37,5 @@ isDeactivatedMapFiltersForm(mapFiltersForm, false);
 
 setValidationOnTitleInput(titleInput);
 setValidationOnPriceInput(priceInput);
-setDependencyBetweenHousingTypeAndPriceInput(housingType, priceInput)
+setDependencyBetweenHousingTypeAndPriceInput(housingType, priceInput);
+
