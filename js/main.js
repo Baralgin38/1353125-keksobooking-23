@@ -6,7 +6,7 @@ import {
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  setDependencyBetweenRoomsAndGuests
+  setValidationOnQuantityGuests
 } from './form.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
@@ -34,4 +34,4 @@ isDeactivatedMapFiltersForm(mapFiltersForm, false);
 setValidationOnTitleInput();
 setValidationOnPriceInput();
 setMinPriceOnPriceInput();
-setDependencyBetweenRoomsAndGuests();
+setValidationOnQuantityGuests();
