@@ -90,52 +90,56 @@ const setMinPriceOnPriceInput = () => {
   });
 };
 
+const setAllowedQuantityGuests = () => {
+  switch(quantityRooms.value) {
+    case '1':
+      for(let i = 0; i < quantityGuests.length; i++) {
+        if (quantityGuests[i].value === '1') {
+          quantityGuests[i].disabled = false;
+          quantityGuests[i].selected = true;
+        } else {
+          quantityGuests[i].disabled = true;
+        }
+      }
+      break;
+    case '2':
+      for(let i = 0; i < quantityGuests.length; i++) {
+        if (quantityGuests[i].value === '2' || quantityGuests[i].value === '1') {
+          quantityGuests[i].disabled = false;
+          quantityGuests[i].selected = true;
+        } else {
+          quantityGuests[i].disabled = true;
+        }
+      }
+      break;
+    case '3':
+      for(let i = 0; i < quantityGuests.length; i++) {
+        if (quantityGuests[i].value === '3' || quantityGuests[i].value === '2' || quantityGuests[i].value === '1') {
+          quantityGuests[i].disabled = false;
+          quantityGuests[i].selected = true;
+        } else {
+          quantityGuests[i].disabled = true;
+        }
+      }
+      break;
+    case '100':
+      for(let i = 0; i < quantityGuests.length; i++) {
+        if (quantityGuests[i].value === '0') {
+          quantityGuests[i].disabled = false;
+          quantityGuests[i].selected = true;
+        } else {
+          quantityGuests[i].disabled = true;
+        }
+      }
+      break;
+  }
+};
 
-const setDependencyBetweenRoomsAndGuests = () => {
+const setValidationOnQuantityGuests = () => {
+  setAllowedQuantityGuests();
 
   quantityRooms.addEventListener('change', () => {
-    switch(quantityRooms.value) {
-      case '1':
-        for(let i = 0; i < quantityGuests.length; i++) {
-          if (quantityGuests[i].value === '1') {
-            quantityGuests[i].disabled = false;
-            quantityGuests[i].selected = true;
-          } else {
-            quantityGuests[i].disabled = true;
-          }
-        }
-        break;
-      case '2':
-        for(let i = 0; i < quantityGuests.length; i++) {
-          if (quantityGuests[i].value === '1' || quantityGuests[i].value === '2') {
-            quantityGuests[i].disabled = false;
-            quantityGuests[i].selected = true;
-          } else {
-            quantityGuests[i].disabled = true;
-          }
-        }
-        break;
-      case '3':
-        for(let i = 0; i < quantityGuests.length; i++) {
-          if (quantityGuests[i].value === '1' || quantityGuests[i].value === '2' || quantityGuests[i].value === '3') {
-            quantityGuests[i].disabled = false;
-            quantityGuests[i].selected = true;
-          } else {
-            quantityGuests[i].disabled = true;
-          }
-        }
-        break;
-      case '100':
-        for(let i = 0; i < quantityGuests.length; i++) {
-          if (quantityGuests[i].value === '0') {
-            quantityGuests[i].disabled = false;
-            quantityGuests[i].selected = true;
-          } else {
-            quantityGuests[i].disabled = true;
-          }
-        }
-        break;
-    }
+    setAllowedQuantityGuests();
   });
 };
 
@@ -145,5 +149,5 @@ export {
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  setDependencyBetweenRoomsAndGuests
+  setValidationOnQuantityGuests
 };
