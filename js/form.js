@@ -1,6 +1,13 @@
 const TITLE_MAX_LENGTH = 100;
 const TITLE_MIN_LENGTH = 30;
 
+const adForm = document.querySelector('.ad-form');
+const titleInput = adForm.querySelector('#title');
+const priceInput = adForm.querySelector('#price');
+const housingType = adForm.querySelector('#type');
+const quantityRooms = adForm.querySelector('#room_number');
+const quantityGuests = adForm.querySelector('#capacity').children;
+
 const formElementsDeactivating = (form, element, isDeactivated) => {
   const formFieldset = form.querySelectorAll(element);
   for(let i = 0; i < formFieldset.length; i++) {
@@ -27,59 +34,108 @@ const isDeactivatedMapFiltersForm = (form, isDeactivated) => {
   formElementsDeactivating(form, 'fieldset', isDeactivated);
 };
 
-const setValidationOnTitleInput = (input) => {
-  input.addEventListener('input', () => {
-    const valueLength = input.value.length;
+const setValidationOnTitleInput = () => {
+  titleInput.addEventListener('input', () => {
+    const valueLength = titleInput.value.length;
 
     if (valueLength < TITLE_MIN_LENGTH) {
-      input.setCustomValidity(`Нужно ввести ещё ${TITLE_MIN_LENGTH - valueLength} симв.`);
+      titleInput.setCustomValidity(`Нужно ввести ещё ${TITLE_MIN_LENGTH - valueLength} симв.`);
     } else if (valueLength > TITLE_MAX_LENGTH) {
-      input.setCustomValidity(`Удалите лишние ${valueLength - TITLE_MAX_LENGTH} симв.`);
+      titleInput.setCustomValidity(`Удалите лишние ${valueLength - TITLE_MAX_LENGTH} симв.`);
     } else {
-      input.setCustomValidity('');
+      titleInput.setCustomValidity('');
     }
 
-    input.reportValidity();
+    titleInput.reportValidity();
   });
 };
 
-const setValidationOnPriceInput = (input) => {
-  input.addEventListener('input', () => {
+const setValidationOnPriceInput = () => {
+  priceInput.addEventListener('input', () => {
 
-    input.reportValidity();
+    priceInput.reportValidity();
   });
 };
 
-const setPriceInputAttribute = (type, input) => {
-  switch(type.value) {
+const setPriceInputAttribute = () => {
+  switch(housingType.value) {
     case 'bungalow':
-      input.min = 0;
-      input.placeholder = 0;
+      priceInput.min = 0;
+      priceInput.placeholder = 0;
       break;
     case 'flat':
-      input.min = 1000;
-      input.placeholder = 1000;
+      priceInput.min = 1000;
+      priceInput.placeholder = 1000;
       break;
     case 'hotel':
-      input.min = 3000;
-      input.placeholder = 3000;
+      priceInput.min = 3000;
+      priceInput.placeholder = 3000;
       break;
     case 'house':
-      input.min = 5000;
-      input.placeholder = 5000;
+      priceInput.min = 5000;
+      priceInput.placeholder = 5000;
       break;
     case 'palace':
-      input.min = 10000;
-      input.placeholder = 10000;
+      priceInput.min = 10000;
+      priceInput.placeholder = 10000;
       break;
   }
 };
 
-const setDependencyBetweenHousingTypeAndPriceInput = (type, input) => {
-  setPriceInputAttribute(type, input);
+const setMinPriceOnPriceInput = () => {
+  setPriceInputAttribute();
 
-  type.addEventListener('change', () => {
-    setPriceInputAttribute(type, input);
+  housingType.addEventListener('change', () => {
+    setPriceInputAttribute();
+  });
+};
+
+
+const setDependencyBetweenRoomsAndGuests = () => {
+
+  quantityRooms.addEventListener('change', () => {
+    switch(quantityRooms.value) {
+      case '1':
+        for(let i = 0; i < quantityGuests.length; i++) {
+          if (quantityGuests[i].value === '1') {
+            quantityGuests[i].disabled = false;
+            quantityGuests[i].selected = true;
+          } else {
+            quantityGuests[i].disabled = true;
+          }
+        }
+        break;
+      case '2':
+        for(let i = 0; i < quantityGuests.length; i++) {
+          if (quantityGuests[i].value === '1' || quantityGuests[i].value === '2') {
+            quantityGuests[i].disabled = false;
+            quantityGuests[i].selected = true;
+          } else {
+            quantityGuests[i].disabled = true;
+          }
+        }
+        break;
+      case '3':
+        for(let i = 0; i < quantityGuests.length; i++) {
+          if (quantityGuests[i].value === '1' || quantityGuests[i].value === '2' || quantityGuests[i].value === '3') {
+            quantityGuests[i].disabled = false;
+            quantityGuests[i].selected = true;
+          } else {
+            quantityGuests[i].disabled = true;
+          }
+        }
+        break;
+      case '100':
+        for(let i = 0; i < quantityGuests.length; i++) {
+          if (quantityGuests[i].value === '0') {
+            quantityGuests[i].disabled = false;
+            quantityGuests[i].selected = true;
+          } else {
+            quantityGuests[i].disabled = true;
+          }
+        }
+        break;
+    }
   });
 };
 
@@ -88,5 +144,6 @@ export {
   isDeactivatedMapFiltersForm,
   setValidationOnTitleInput,
   setValidationOnPriceInput,
-  setDependencyBetweenHousingTypeAndPriceInput
+  setMinPriceOnPriceInput,
+  setDependencyBetweenRoomsAndGuests
 };
