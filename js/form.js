@@ -7,6 +7,8 @@ const priceInput = adForm.querySelector('#price');
 const housingType = adForm.querySelector('#type');
 const quantityRooms = adForm.querySelector('#room_number');
 const quantityGuests = adForm.querySelector('#capacity').children;
+const timeIn = adForm.querySelector('#timein');
+const timeOut = adForm.querySelector('#timeout');
 
 const formElementsDeactivating = (form, element, isDeactivated) => {
   const formFieldset = form.querySelectorAll(element);
@@ -143,11 +145,33 @@ const setValidationOnQuantityGuests = () => {
   });
 };
 
+const changeTimeOut = () => {
+  timeIn.addEventListener('change', () => {
+    for(let i = 0; i < timeOut.children.length; i++) {
+      if (timeOut.children[i].value === timeIn.value) {
+        timeOut.children[i].selected = true;
+      }
+    }
+  });
+};
+
+const changeTimeIn = () => {
+  timeOut.addEventListener('change', () => {
+    for(let i = 0; i < timeIn.children.length; i++) {
+      if (timeIn.children[i].value === timeOut.value) {
+        timeIn.children[i].selected = true;
+      }
+    }
+  });
+};
+
 export {
   isDeactivatedAdForm,
   isDeactivatedMapFiltersForm,
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  setValidationOnQuantityGuests
+  setValidationOnQuantityGuests,
+  changeTimeOut,
+  changeTimeIn
 };
