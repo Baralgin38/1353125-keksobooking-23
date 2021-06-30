@@ -1,6 +1,13 @@
 import {getSimilarAd} from './data.js';
 import {generateSimilarAd} from './generate-similar-ad.js';
-import {changeActivityAdForm, changeActivityMapFiltersForm} from './form.js';
+import {
+  isDeactivatedAdForm,
+  isDeactivatedMapFiltersForm,
+  setValidationOnTitleInput,
+  setValidationOnPriceInput,
+  setMinPriceOnPriceInput,
+  setValidationOnQuantityGuests
+} from './form.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
 
@@ -21,5 +28,10 @@ const canvas = document.querySelector('#map-canvas');
 
 canvas.append(generateSimilarAd(similarAds[0], cardAdTemplate));
 
-changeActivityAdForm(adForm, true);
-changeActivityMapFiltersForm(mapFiltersForm, true);
+isDeactivatedAdForm(adForm, false);
+isDeactivatedMapFiltersForm(mapFiltersForm, false);
+
+setValidationOnTitleInput();
+setValidationOnPriceInput();
+setMinPriceOnPriceInput();
+setValidationOnQuantityGuests();
