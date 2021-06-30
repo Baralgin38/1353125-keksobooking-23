@@ -2,36 +2,39 @@ const TITLE_MAX_LENGTH = 100;
 const TITLE_MIN_LENGTH = 30;
 
 const adForm = document.querySelector('.ad-form');
+const mapFiltersForm = document.querySelector('.map__filters');
 const titleInput = adForm.querySelector('#title');
 const priceInput = adForm.querySelector('#price');
 const housingType = adForm.querySelector('#type');
 const quantityRooms = adForm.querySelector('#room_number');
 const quantityGuests = adForm.querySelector('#capacity').children;
+const timeIn = adForm.querySelector('#timein');
+const timeOut = adForm.querySelector('#timeout');
 
-const formElementsDeactivating = (form, element, isDeactivated) => {
+const formElementsDeactivating = (form, element, status) => {
   const formFieldset = form.querySelectorAll(element);
   for(let i = 0; i < formFieldset.length; i++) {
-    formFieldset[i].disabled = isDeactivated;
+    formFieldset[i].disabled = status;
   }
 };
 
-const isDeactivatedAdForm = (form, isDeactivated) => {
-  if (isDeactivated) {
-    form.classList.add('ad-form--disabled');
+const changeStatusAdForm = (status) => {
+  if (status) {
+    adForm.classList.add('ad-form--disabled');
   } else {
-    form.classList.remove('ad-form--disabled');
+    adForm.classList.remove('ad-form--disabled');
   }
-  formElementsDeactivating(form, 'fieldset', isDeactivated);
+  formElementsDeactivating(adForm, 'fieldset', status);
 };
 
-const isDeactivatedMapFiltersForm = (form, isDeactivated) => {
-  if (isDeactivated) {
-    form.classList.add('map__filters--disabled');
+const changeStatusMapFiltersForm = (status) => {
+  if (status) {
+    mapFiltersForm.classList.add('map__filters--disabled');
   } else {
-    form.classList.remove('map__filters--disabled');
+    mapFiltersForm.classList.remove('map__filters--disabled');
   }
-  formElementsDeactivating(form, 'select', isDeactivated);
-  formElementsDeactivating(form, 'fieldset', isDeactivated);
+  formElementsDeactivating(mapFiltersForm, 'select', status);
+  formElementsDeactivating(mapFiltersForm, 'fieldset', status);
 };
 
 const setValidationOnTitleInput = () => {
@@ -135,7 +138,7 @@ const setAllowedQuantityGuests = () => {
   }
 };
 
-const setValidationOnQuantityGuests = () => {
+const changeQuantityGuests = () => {
   setAllowedQuantityGuests();
 
   quantityRooms.addEventListener('change', () => {
@@ -143,11 +146,33 @@ const setValidationOnQuantityGuests = () => {
   });
 };
 
+const changeTimeOut = () => {
+  timeIn.addEventListener('change', () => {
+    for(let i = 0; i < timeOut.children.length; i++) {
+      if (timeOut.children[i].value === timeIn.value) {
+        timeOut.children[i].selected = true;
+      }
+    }
+  });
+};
+
+const changeTimeIn = () => {
+  timeOut.addEventListener('change', () => {
+    for(let i = 0; i < timeIn.children.length; i++) {
+      if (timeIn.children[i].value === timeOut.value) {
+        timeIn.children[i].selected = true;
+      }
+    }
+  });
+};
+
 export {
-  isDeactivatedAdForm,
-  isDeactivatedMapFiltersForm,
+  changeStatusAdForm,
+  changeStatusMapFiltersForm,
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  setValidationOnQuantityGuests
+  changeQuantityGuests,
+  changeTimeOut,
+  changeTimeIn
 };
