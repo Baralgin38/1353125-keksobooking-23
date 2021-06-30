@@ -6,7 +6,9 @@ import {
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  setValidationOnQuantityGuests
+  setValidationOnQuantityGuests,
+  changeTimeOut,
+  changeTimeIn
 } from './form.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
@@ -35,3 +37,5 @@ setValidationOnTitleInput();
 setValidationOnPriceInput();
 setMinPriceOnPriceInput();
 setValidationOnQuantityGuests();
+changeTimeOut();
+changeTimeIn();
