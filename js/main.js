@@ -12,7 +12,7 @@ import {
   changeTimeOut,
   changeTimeIn
 } from './form.js';
-import {adMap} from './map.js';
+import {addMap} from './map.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
 
@@ -35,4 +35,4 @@ setMinPriceOnPriceInput();
 changeAllowedQuantityGuests();
 changeTimeOut();
 changeTimeIn();
-adMap(adFormActivated, mapFiltersFormActivated);
+addMap(adFormActivated, mapFiltersFormActivated);
