@@ -12,7 +12,7 @@ import {
   changeTimeOut,
   changeTimeIn
 } from './form.js';
-import {addMap} from './map.js';
+import {addMap, addSimilarAdsOnMap} from './map.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
 
@@ -36,3 +36,4 @@ changeAllowedQuantityGuests();
 changeTimeOut();
 changeTimeIn();
 addMap(adFormActivated, mapFiltersFormActivated);
+addSimilarAdsOnMap(similarAds);
