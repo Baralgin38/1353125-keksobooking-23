@@ -6,7 +6,7 @@ import {
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  changeQuantityGuests,
+  changeAllowedQuantityGuests,
   changeTimeOut,
   changeTimeIn
 } from './form.js';
@@ -36,6 +36,6 @@ changeStatusMapFiltersForm(ACTIVATED);
 setValidationOnTitleInput();
 setValidationOnPriceInput();
 setMinPriceOnPriceInput();
-changeQuantityGuests();
+changeAllowedQuantityGuests();
 changeTimeOut();
 changeTimeIn();

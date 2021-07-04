@@ -138,7 +138,7 @@ const setAllowedQuantityGuests = () => {
   }
 };
 
-const changeQuantityGuests = () => {
+const changeAllowedQuantityGuests = () => {
   setAllowedQuantityGuests();
 
   quantityRooms.addEventListener('change', () => {
@@ -148,21 +148,13 @@ const changeQuantityGuests = () => {
 
 const changeTimeOut = () => {
   timeIn.addEventListener('change', () => {
-    for(let i = 0; i < timeOut.children.length; i++) {
-      if (timeOut.children[i].value === timeIn.value) {
-        timeOut.children[i].selected = true;
-      }
-    }
+    timeOut.value = timeIn.value;
   });
 };
 
 const changeTimeIn = () => {
   timeOut.addEventListener('change', () => {
-    for(let i = 0; i < timeIn.children.length; i++) {
-      if (timeIn.children[i].value === timeOut.value) {
-        timeIn.children[i].selected = true;
-      }
-    }
+    timeIn.value = timeOut.value;
   });
 };
 
@@ -172,7 +164,7 @@ export {
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  changeQuantityGuests,
+  changeAllowedQuantityGuests,
   changeTimeOut,
   changeTimeIn
 };
