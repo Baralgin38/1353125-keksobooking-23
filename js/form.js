@@ -11,30 +11,33 @@ const quantityGuests = adForm.querySelector('#capacity').children;
 const timeIn = adForm.querySelector('#timein');
 const timeOut = adForm.querySelector('#timeout');
 
-const formElementsDeactivating = (form, element, status) => {
+const changeStatusFormElements = (form, element, status) => {
   const formFieldset = form.querySelectorAll(element);
   for(let i = 0; i < formFieldset.length; i++) {
     formFieldset[i].disabled = status;
   }
 };
 
-const changeStatusAdForm = (status) => {
-  if (status) {
-    adForm.classList.add('ad-form--disabled');
-  } else {
-    adForm.classList.remove('ad-form--disabled');
-  }
-  formElementsDeactivating(adForm, 'fieldset', status);
+const adFormActivated = () => {
+  adForm.classList.remove('ad-form--disabled');
+  changeStatusFormElements(adForm, 'fieldset', false);
 };
 
-const changeStatusMapFiltersForm = (status) => {
-  if (status) {
-    mapFiltersForm.classList.add('map__filters--disabled');
-  } else {
-    mapFiltersForm.classList.remove('map__filters--disabled');
-  }
-  formElementsDeactivating(mapFiltersForm, 'select', status);
-  formElementsDeactivating(mapFiltersForm, 'fieldset', status);
+const adFormDeactivated = () => {
+  adForm.classList.add('ad-form--disabled');
+  changeStatusFormElements(adForm, 'fieldset', true);
+};
+
+const mapFiltersFormActivated = () => {
+  mapFiltersForm.classList.remove('map__filters--disabled');
+  changeStatusFormElements(mapFiltersForm, 'select', false);
+  changeStatusFormElements(mapFiltersForm, 'fieldset', false);
+};
+
+const mapFiltersFormDeactivated = () => {
+  mapFiltersForm.classList.add('map__filters--disabled');
+  changeStatusFormElements(mapFiltersForm, 'select', true);
+  changeStatusFormElements(mapFiltersForm, 'fieldset', true);
 };
 
 const setValidationOnTitleInput = () => {
@@ -159,8 +162,10 @@ const changeTimeIn = () => {
 };
 
 export {
-  changeStatusAdForm,
-  changeStatusMapFiltersForm,
+  adFormActivated,
+  adFormDeactivated,
+  mapFiltersFormActivated,
+  mapFiltersFormDeactivated,
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
