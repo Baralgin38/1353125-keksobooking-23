@@ -6,7 +6,7 @@ const mainPinIcon = L.icon({
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
-const mainPinMarker = L.marker(
+const mainPin = L.marker(
   {
     lat: 35.6895,
     lng: 139.692,
@@ -16,12 +16,24 @@ const mainPinMarker = L.marker(
     icon: mainPinIcon,
   },
 );
+const address = document.querySelector('#address');
+
+const setAddressValue = () => {
+  const {lat, lng} = mainPin.getLatLng();
+  address.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+};
+
+mainPin.on('moveend', () => {
+  setAddressValue();
+});
 
 const addMap = (adFormActivated, mapFiltersFormActivated) => {
   const map = L.map(mapContainer)
     .on('load', () => {
       adFormActivated();
       mapFiltersFormActivated();
+      address.readOnly = true;
+      setAddressValue();
     })
     .setView({
       lat: 35.6895,
@@ -35,7 +47,7 @@ const addMap = (adFormActivated, mapFiltersFormActivated) => {
     },
   ).addTo(map);
 
-  mainPinMarker.addTo(map);
+  mainPin.addTo(map);
 };
 
 
