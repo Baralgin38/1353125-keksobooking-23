@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-redeclare
 /* global L:readonly */
 
 const SYMBOL_AFTER_DOT = 5;
@@ -40,7 +41,7 @@ mainPin.on('moveend', () => {
 const map = L.map(mapContainer);
 const markerGroup = L.layerGroup().addTo(map);
 
-const createPinSimilarAd = (ad) => {
+const createPinSimilarAd = (ad, cardAd) => {
   const {lat, lng} = ad.location;
 
   const pin = L.marker (
@@ -53,13 +54,15 @@ const createPinSimilarAd = (ad) => {
     },
   );
 
-  pin.addTo(markerGroup);
+  pin
+    .addTo(markerGroup)
+    .bindPopup(
+      cardAd,
+    );
 };
 
-const addSimilarAdsOnMap = (similarAds) => {
-  similarAds.forEach((ad) => {
-    createPinSimilarAd(ad);
-  });
+const addPinSimilarAdsOnMap = (ad, cardAd) => {
+  createPinSimilarAd(ad, cardAd);
 };
 
 const addMap = (adFormActivated, mapFiltersFormActivated) => {
@@ -85,4 +88,4 @@ const addMap = (adFormActivated, mapFiltersFormActivated) => {
 };
 
 
-export {addMap, addSimilarAdsOnMap};
+export {addMap, addPinSimilarAdsOnMap};
