@@ -5,13 +5,13 @@ const SYMBOL_AFTER_DOT = 5;
 
 const mapContainer = document.querySelector('#map-canvas');
 const mainPinIcon = L.icon({
-  iconUrl: '../img/main-pin.svg',
+  iconUrl: 'img/main-pin.svg',
   iconSize: [52, 52],
   iconAnchor: [26, 52],
 });
 
 const pinIcon = L.icon ({
-  iconUrl: '../img/pin.svg',
+  iconUrl: 'img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20,40],
 });
