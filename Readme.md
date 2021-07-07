@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Илья Емельянов](https://up.htmlacademy.ru/javascript/23/user/1353125).
-* Наставник: [Андрей Устименко](https://htmlacademy.ru/profile/spiritmoon).
+* Наставник: [Владимир Коршунов](https://htmlacademy.ru/profile/bekobou).
 
 ---
 

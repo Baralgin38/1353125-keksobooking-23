@@ -1,41 +1,43 @@
 import {getSimilarAd} from './data.js';
-import {generateSimilarAd} from './generate-similar-ad.js';
+import {generateCardSimilarAd} from './generate-similar-ad.js';
 import {
-  changeStatusAdForm,
-  changeStatusMapFiltersForm,
+  adFormActivated,
+  adFormDeactivated,
+  mapFiltersFormActivated,
+  mapFiltersFormDeactivated,
   setValidationOnTitleInput,
   setValidationOnPriceInput,
   setMinPriceOnPriceInput,
-  changeQuantityGuests,
+  changeAllowedQuantityGuests,
   changeTimeOut,
   changeTimeIn
 } from './form.js';
+import {addMap, addPinSimilarAdsOnMap} from './map.js';
 
 const QUANTITY_OF_SIMILAR_ADS = 10;
-const ACTIVATED = false;
-const DEACTIVATED = true;
-DEACTIVATED;
 
 const similarAds = new Array(QUANTITY_OF_SIMILAR_ADS).fill('').map(getSimilarAd);
 
 const cardAdTemplateContent = document.querySelector('#card').content;
 const cardAdTemplate = cardAdTemplateContent.querySelector('.popup');
 
-// const similarAdsFragment = document.createDocumentFragment();
-const canvas = document.querySelector('#map-canvas');
-
-// similarAds.forEach((ad) => {
-//   similarAdsFragment.append(generateSimilarAds(ad, cardAdTemplate));
+// const cardsSimilarAds = similarAds.map((ad) => {
+//   generateCardSimilarAd(ad, cardAdTemplate);
 // });
 
-canvas.append(generateSimilarAd(similarAds[0], cardAdTemplate));
-
-changeStatusAdForm(ACTIVATED);
-changeStatusMapFiltersForm(ACTIVATED);
+adFormDeactivated();
+mapFiltersFormDeactivated();
 
 setValidationOnTitleInput();
 setValidationOnPriceInput();
 setMinPriceOnPriceInput();
-changeQuantityGuests();
+changeAllowedQuantityGuests();
 changeTimeOut();
 changeTimeIn();
+
+addMap(adFormActivated, mapFiltersFormActivated);
+similarAds.forEach((ad) => {
+  const cardAd = generateCardSimilarAd(ad, cardAdTemplate);
+
+  addPinSimilarAdsOnMap(ad, cardAd);
+});
