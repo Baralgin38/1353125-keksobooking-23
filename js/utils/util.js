@@ -75,4 +75,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
+const isEscEvent = (evt) => evt.key === 'Esc' || evt.key === 'Escape';
+
 export {getRandomInteger, getRandomIntegerFloat, getRandomArrayElement, getRandomArrayElements, shuffleArray, showAlert};
