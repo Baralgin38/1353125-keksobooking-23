@@ -1,3 +1,6 @@
+import {setAddressValue} from './map.js';
+import {sendData} from './api.js';
+
 const TITLE_MAX_LENGTH = 100;
 const TITLE_MIN_LENGTH = 30;
 
@@ -160,6 +163,27 @@ const changeTimeIn = () => {
     timeIn.value = timeOut.value;
   });
 };
+
+
+const resetForms = () => {
+  adForm.reset();
+  mapFiltersForm.reset();
+  setPriceInputAttribute();
+  setAllowedQuantityGuests();
+  setAddressValue();
+};
+
+
+const setAdFormSubmit = (onSuccess) => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+
+    sendData( , , formData);
+  });
+};
+
+
 
 export {
   adFormActivated,

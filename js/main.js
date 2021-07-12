@@ -1,4 +1,3 @@
-// import {getSimilarAd} from './data.js'; ??
 import {generateCardSimilarAd} from './generate-similar-ad.js';
 import {
   adFormActivated,
@@ -14,10 +13,6 @@ import {
 } from './form.js';
 import {addMap, addPinSimilarAdsOnMap} from './map.js';
 import {getData} from './api.js';
-
-// const QUANTITY_OF_SIMILAR_ADS = 10;  ??
-
-// const similarAds = new Array(QUANTITY_OF_SIMILAR_ADS).fill('').map(getSimilarAd); ??
 
 const cardAdTemplateContent = document.querySelector('#card').content;
 const cardAdTemplate = cardAdTemplateContent.querySelector('.popup');

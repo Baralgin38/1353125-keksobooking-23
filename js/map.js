@@ -103,4 +103,4 @@ const addMap = (adFormActivated, mapFiltersFormActivated) => {
 };
 
 
-export {addMap, addPinSimilarAdsOnMap};
+export {addMap, addPinSimilarAdsOnMap, setAddressValue};
