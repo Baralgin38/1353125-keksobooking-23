@@ -1,4 +1,4 @@
-import {setAddressValue} from './map.js';
+import {setAddressValue, setMainPinDefaultCoordinates} from './map.js';
 import {sendData} from './api.js';
 
 const TITLE_MAX_LENGTH = 100;
@@ -170,6 +170,7 @@ const resetForms = () => {
   mapFiltersForm.reset();
   setPriceInputAttribute();
   setAllowedQuantityGuests();
+  setMainPinDefaultCoordinates();
   setAddressValue();
 };
 
@@ -179,10 +180,9 @@ const setAdFormSubmit = (onSuccess) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
 
-    sendData( , , formData);
+    sendData(onSuccess ,formData);
   });
 };
-
 
 
 export {
@@ -195,5 +195,7 @@ export {
   setMinPriceOnPriceInput,
   changeAllowedQuantityGuests,
   changeTimeOut,
-  changeTimeIn
+  changeTimeIn,
+  setAdFormSubmit,
+  resetForms
 };
