@@ -9,11 +9,11 @@ import {
   setMinPriceOnPriceInput,
   changeAllowedQuantityGuests,
   changeTimeOut,
-  changeTimeIn,
-  setAdFormSubmit
+  changeTimeIn
 } from './form.js';
 import {addMap, addPinSimilarAdsOnMap} from './map.js';
 import {getData} from './api.js';
+import {setAdFormSubmit} from './set-submit-listener.js';
 
 const cardAdTemplateContent = document.querySelector('#card').content;
 const cardAdTemplate = cardAdTemplateContent.querySelector('.popup');
@@ -29,12 +29,6 @@ changeTimeOut();
 changeTimeIn();
 
 addMap(adFormActivated, mapFiltersFormActivated);
-
-// similarAds.forEach((ad) => {
-//   const cardAd = generateCardSimilarAd(ad, cardAdTemplate);
-
-//   addPinSimilarAdsOnMap(ad, cardAd);
-// });
 
 getData((ads) => {
   ads.forEach((ad) => {

@@ -1,7 +1,3 @@
-import {setAddressValue, setMainPinDefaultCoordinates} from './map.js';
-import {sendData} from './api.js';
-import {showSuccessMessage, showFailMessage} from './message.js';
-
 const TITLE_MAX_LENGTH = 100;
 const TITLE_MIN_LENGTH = 30;
 
@@ -165,35 +161,6 @@ const changeTimeIn = () => {
   });
 };
 
-
-const resetForms = () => {
-  adForm.reset();
-  mapFiltersForm.reset();
-  setPriceInputAttribute();
-  setAllowedQuantityGuests();
-  setMainPinDefaultCoordinates();
-  setAddressValue();
-};
-
-const onSuccess = () => {
-  resetForms();
-  showSuccessMessage();
-};
-
-const onFail = (errorTitle) => {
-  showFailMessage(errorTitle);
-};
-
-const setAdFormSubmit = () => {
-  adForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const formData = new FormData(evt.target);
-
-    sendData(onSuccess, onFail, formData);
-  });
-};
-
-
 export {
   adFormActivated,
   adFormDeactivated,
@@ -205,5 +172,6 @@ export {
   changeAllowedQuantityGuests,
   changeTimeOut,
   changeTimeIn,
-  setAdFormSubmit
+  setPriceInputAttribute,
+  setAllowedQuantityGuests
 };
