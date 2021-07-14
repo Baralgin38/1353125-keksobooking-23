@@ -1,10 +1,9 @@
 import {isEscEvent} from './utils/util.js';
 
-const successMessageTemplateContent = document.querySelector('#success').content;
-// const successMessage = successMessageTemplateContent.querySelector('.success');
+const successMessageTemplate= document.querySelector('#success').content.querySelector('.success');
 
-const onSuccess = () => {
-  const message = successMessageTemplateContent.querySelector('.success');
+const showSuccessMessage = () => {
+  const message = successMessageTemplate.cloneNode(true);
 
   const onDocumentEscKeydown = (evt) => {
     if (isEscEvent(evt)) {
@@ -25,14 +24,14 @@ const onSuccess = () => {
 
 };
 
-// onSuccess();
 
+const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 
-const errorMessageTemplateContent = document.querySelector('#error').content;
-
-const onFail = () => {
-  const message = errorMessageTemplateContent.querySelector('.error');
+const showFailMessage = (errorTitle) => {
+  const message = errorMessageTemplate.cloneNode(true);
+  const errorDescription = message.querySelector('.error__message');
   const errorButton = message.querySelector('.error__button');
+  errorDescription.insertAdjacentHTML('beforeend', `<br> ${errorTitle}`);
 
   const onDocumentEscKeydown = (evt) => {
     if (isEscEvent(evt)) {
@@ -59,27 +58,5 @@ const onFail = () => {
   message.focus();
 };
 
-onFail();
-// const onDocumentClick = (evt) => {
-//   deleteMessage();
-// };
 
-// const onDocumentKeydown = (evt) => {
-//   if (isEscEvent(evt)) {
-//     deleteMessage();
-//   }
-// };
-
-// const createMessage = (message) => {
-//   document.body.appendChild(message);
-//   document.addEventListener('click', onDocumentClick);
-//   document.addEventListener('keydown', onDocumentKeydown);
-// };
-
-// function deleteMessage () {
-//   document.body.lastChild.remove();
-//   document.removeEventListener('click', onDocumentClick);
-//   document.removeEventListener('keydown', onDocumentKeydown);
-// }
-
-// createMessage(successMessage);
+export {showSuccessMessage, showFailMessage};
