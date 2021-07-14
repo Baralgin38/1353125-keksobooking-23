@@ -44,6 +44,13 @@ const mainPin = L.marker(
 
 const address = document.querySelector('#address');
 
+const setMainPinDefaultCoordinates = () => {
+  mainPin.setLatLng({
+    lat: DEFAULT_LATITUDE,
+    lng: DEFAULT_LONGITUDE,
+  });
+};
+
 const setAddressValue = () => {
   const {lat, lng} = mainPin.getLatLng();
   address.value = `${lat.toFixed(SYMBOL_AFTER_DOT)}, ${lng.toFixed(SYMBOL_AFTER_DOT)}`;
@@ -103,4 +110,4 @@ const addMap = (adFormActivated, mapFiltersFormActivated) => {
 };
 
 
-export {addMap, addPinSimilarAdsOnMap, setAddressValue};
+export {addMap, addPinSimilarAdsOnMap, setAddressValue, setMainPinDefaultCoordinates};
