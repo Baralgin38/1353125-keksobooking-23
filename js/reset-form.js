@@ -15,4 +15,9 @@ const resetForms = () => {
 
 const adFormResetButton = adForm.querySelector('.ad-form__reset');
 
+adFormResetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetForms();
+});
+
 export {resetForms};
