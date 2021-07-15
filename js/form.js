@@ -171,5 +171,7 @@ export {
   setMinPriceOnPriceInput,
   changeAllowedQuantityGuests,
   changeTimeOut,
-  changeTimeIn
+  changeTimeIn,
+  setPriceInputAttribute,
+  setAllowedQuantityGuests
 };
