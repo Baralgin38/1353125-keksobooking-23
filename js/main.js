@@ -1,4 +1,4 @@
-import {generateCardSimilarAd} from './generate-similar-ad.js';
+import {renderSimilarAd} from './generate-similar-ad.js';
 import {
   adFormActivated,
   adFormDeactivated,
@@ -11,12 +11,11 @@ import {
   changeTimeOut,
   changeTimeIn
 } from './form.js';
-import {addMap, addPinSimilarAdsOnMap} from './map.js';
+import {addMap} from './map.js';
 import {getData} from './api.js';
 import {setAdFormSubmit} from './set-submit-listener.js';
 
-const cardAdTemplateContent = document.querySelector('#card').content;
-const cardAdTemplate = cardAdTemplateContent.querySelector('.popup');
+// const QUANTITY_ADS = 9;
 
 adFormDeactivated();
 mapFiltersFormDeactivated();
@@ -31,11 +30,7 @@ changeTimeIn();
 addMap(adFormActivated, mapFiltersFormActivated);
 
 getData((ads) => {
-  ads.forEach((ad) => {
-    const cardAd = generateCardSimilarAd(ad, cardAdTemplate);
-
-    addPinSimilarAdsOnMap(ad, cardAd);
-  });
+  renderSimilarAd(ads);
 });
 
 setAdFormSubmit();

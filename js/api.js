@@ -11,8 +11,8 @@ const getData = (onSuccess) => {
       throw new Error(`${response.status} ${response.statusText}`);
     })
     .then((data) => {
-      onSuccess(data);
       mapFiltersFormActivated();
+      onSuccess(data);
     })
     .catch((err) => {
       showAlert(err);
