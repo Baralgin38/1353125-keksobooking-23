@@ -1,4 +1,5 @@
 import {showAlert} from './utils/util.js';
+import {mapFiltersFormActivated} from './form.js';
 
 const getData = (onSuccess) => {
   fetch('https://23.javascript.pages.academy/keksobooking/data')
@@ -11,6 +12,7 @@ const getData = (onSuccess) => {
     })
     .then((data) => {
       onSuccess(data);
+      mapFiltersFormActivated();
     })
     .catch((err) => {
       showAlert(err);

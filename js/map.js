@@ -87,10 +87,9 @@ const addPinSimilarAdsOnMap = (ad, cardAd) => {
   createPinSimilarAd(ad, cardAd);
 };
 
-const addMap = (adFormActivated, mapFiltersFormActivated) => {
+const addMap = (adFormActivated) => {
   map.on('load', () => {
     adFormActivated();
-    mapFiltersFormActivated();
     address.readOnly = true;
     setAddressValue();
   })
