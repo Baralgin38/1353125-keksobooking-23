@@ -1,6 +1,14 @@
 const TITLE_MAX_LENGTH = 100;
 const TITLE_MIN_LENGTH = 30;
 
+const MinPriceOfHousingType = {
+  BUNGALOW: 0,
+  FLAT: 1000,
+  HOTEL: 3000,
+  HOUSE: 5000,
+  PALACE: 10000,
+};
+
 const adForm = document.querySelector('.ad-form');
 const mapFiltersForm = document.querySelector('.map__filters');
 const titleInput = adForm.querySelector('#title');
@@ -66,24 +74,24 @@ const setValidationOnPriceInput = () => {
 const setPriceInputAttribute = () => {
   switch(housingType.value) {
     case 'bungalow':
-      priceInput.min = 0;
-      priceInput.placeholder = 0;
+      priceInput.min = MinPriceOfHousingType.BUNGALOW;
+      priceInput.placeholder = MinPriceOfHousingType.BUNGALOW;
       break;
     case 'flat':
-      priceInput.min = 1000;
-      priceInput.placeholder = 1000;
+      priceInput.min = MinPriceOfHousingType.FLAT;
+      priceInput.placeholder = MinPriceOfHousingType.FLAT;
       break;
     case 'hotel':
-      priceInput.min = 3000;
-      priceInput.placeholder = 3000;
+      priceInput.min = MinPriceOfHousingType.HOTEL;
+      priceInput.placeholder = MinPriceOfHousingType.HOTEL;
       break;
     case 'house':
-      priceInput.min = 5000;
-      priceInput.placeholder = 5000;
+      priceInput.min = MinPriceOfHousingType.HOUSE;
+      priceInput.placeholder = MinPriceOfHousingType.HOUSE;
       break;
     case 'palace':
-      priceInput.min = 10000;
-      priceInput.placeholder = 10000;
+      priceInput.min = MinPriceOfHousingType.PALACE;
+      priceInput.placeholder = MinPriceOfHousingType.PALACE;
       break;
   }
 };

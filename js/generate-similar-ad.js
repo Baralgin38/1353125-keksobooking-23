@@ -1,3 +1,7 @@
+import {addPinSimilarAdsOnMap} from './map.js';
+
+const QUANTITY_ADS = 10;
+
 const getHousingTypeOfAd = (housingType) => {
   switch(housingType) {
     case 'flat':
@@ -70,8 +74,11 @@ const addPhotoOnCardAd = (parentElement, photos) => {
   }
 };
 
-const generateCardSimilarAd = ({author, offer}, template) => {
-  const cardAd = template.cloneNode(true);
+const cardAdTemplateContent = document.querySelector('#card').content;
+const cardAdTemplate = cardAdTemplateContent.querySelector('.popup');
+
+const generateCardSimilarAd = ({author, offer}) => {
+  const cardAd = cardAdTemplate.cloneNode(true);
   const cardAdFeatures = cardAd.querySelector('.popup__features');
   const cardAdDescription = cardAd.querySelector('.popup__description');
   const cardAdPhotos = cardAd.querySelector('.popup__photos');
@@ -105,4 +112,13 @@ const generateCardSimilarAd = ({author, offer}, template) => {
   return cardAd;
 };
 
-export {generateCardSimilarAd};
+const renderSimilarAd = (ads) => {
+  ads.slice(0, QUANTITY_ADS)
+    .forEach((ad) => {
+      const cardAd = generateCardSimilarAd(ad);
+
+      addPinSimilarAdsOnMap(ad, cardAd);
+    });
+};
+
+export {renderSimilarAd};

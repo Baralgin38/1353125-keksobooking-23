@@ -6,29 +6,29 @@ const DEFAULT_LATITUDE = 35.6895;
 const DEFAULT_LONGITUDE = 139.692;
 const DEFAULT_ZOOM = 12;
 
-const mainPinInformation = {
-  url: 'img/main-pin.svg',
-  size: [52, 52],
-  anchor: [26, 52],
+const MainPinInformation = {
+  URL: 'img/main-pin.svg',
+  SIZE: [52, 52],
+  ANCHOR: [26, 52],
 };
 
-const pinInformation = {
-  url: 'img/pin.svg',
-  size: [40, 40],
-  anchor: [20, 20],
+const PinInformation = {
+  URL: 'img/pin.svg',
+  SIZE: [40, 40],
+  ANCHOR: [20, 20],
 };
 
 const mapContainer = document.querySelector('#map-canvas');
 const mainPinIcon = L.icon({
-  iconUrl: mainPinInformation.url,
-  iconSize: mainPinInformation.size,
-  iconAnchor: mainPinInformation.anchor,
+  iconUrl: MainPinInformation.URL,
+  iconSize: MainPinInformation.SIZE,
+  iconAnchor: MainPinInformation.ANCHOR,
 });
 
 const pinIcon = L.icon ({
-  iconUrl: pinInformation.url,
-  iconSize: pinInformation.size,
-  iconAnchor: pinInformation.anchor,
+  iconUrl: PinInformation.URL,
+  iconSize: PinInformation.SIZE,
+  iconAnchor: PinInformation.ANCHOR,
 });
 
 const mainPin = L.marker(
@@ -63,6 +63,10 @@ mainPin.on('moveend', () => {
 const map = L.map(mapContainer);
 const markerGroup = L.layerGroup().addTo(map);
 
+const clearMarkerGroup = () => {
+  markerGroup.clearLayers();
+};
+
 const createPinSimilarAd = (ad, cardAd) => {
   const {lat, lng} = ad.location;
 
@@ -87,10 +91,9 @@ const addPinSimilarAdsOnMap = (ad, cardAd) => {
   createPinSimilarAd(ad, cardAd);
 };
 
-const addMap = (adFormActivated, mapFiltersFormActivated) => {
+const addMap = (adFormActivated) => {
   map.on('load', () => {
     adFormActivated();
-    mapFiltersFormActivated();
     address.readOnly = true;
     setAddressValue();
   })
@@ -110,4 +113,4 @@ const addMap = (adFormActivated, mapFiltersFormActivated) => {
 };
 
 
-export {addMap, addPinSimilarAdsOnMap, setAddressValue, setMainPinDefaultCoordinates};
+export {addMap, addPinSimilarAdsOnMap, setAddressValue, setMainPinDefaultCoordinates, clearMarkerGroup};
