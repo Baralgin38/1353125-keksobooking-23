@@ -12,7 +12,7 @@ const housingRoomsQuantity = mapFiltersForm.querySelector('#housing-rooms');
 const housingGuestsQuantity = mapFiltersForm.querySelector('#housing-guests');
 const housingFeatures = mapFiltersForm.querySelector('#housing-features');
 
-const HousingPriceRange = {
+const HOUSING_PRICE_RANGE = {
   low: {
     min: 0,
     max: 10000,
@@ -34,7 +34,7 @@ const isMatchingHousingRoomsQuantity = (ad) => housingRoomsQuantity.value === DE
 const isMatchingHousingGuestsQuantity = (ad) => housingGuestsQuantity.value === DEFAULT_VALUE ||  ad.offer.guests === Number(housingGuestsQuantity.value);
 
 const isMatchingHousingPrice = (ad) => {
-  const currentHousingPrice = HousingPriceRange[housingPrice.value];
+  const currentHousingPrice = HOUSING_PRICE_RANGE[housingPrice.value];
 
   return !currentHousingPrice || ad.offer.price >= currentHousingPrice.min && ad.offer.price <= currentHousingPrice.max;
 };
@@ -52,15 +52,6 @@ const filterFunctions = [
   isMatchingHousingPrice,
   isMatchingHousingFeatures,
 ];
-
-// const debouncedRender = debounce(renderSimilarAd, RENDER_DELAY);
-// const onFilterChange = (ads) => {
-//   mapFiltersForm.addEventListener('change', () => {
-//     const filteredAds = ads.filter((ad) => filterFunctions.every((filterFunction) => filterFunction(ad)));
-//     clearMarkerGroup();
-//     debouncedRender(filteredAds);
-//   });
-// };
 
 const filter = (ads) => {
   const filteredAds = ads.filter((ad) => filterFunctions.every((filterFunction) => filterFunction(ad)));

@@ -25,9 +25,5 @@ const setResetOnForms = (cb) => {
     cb();
   });
 };
-// adFormResetButton.addEventListener('click', (evt) => {
-//   evt.preventDefault();
-//   resetForms();
-// });
 
 export {resetForms, setResetOnForms};
