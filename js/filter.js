@@ -1,6 +1,6 @@
 import {debounce} from './utils/debounce.js';
 import {clearMarkerGroup} from './map.js';
-import { renderSimilarAd } from './generate-similar-ad.js';
+import {renderSimilarAd} from './generate-similar-ad.js';
 
 const DEFAULT_VALUE = 'any';
 const RENDER_DELAY = 500;
@@ -12,7 +12,7 @@ const housingRoomsQuantity = mapFiltersForm.querySelector('#housing-rooms');
 const housingGuestsQuantity = mapFiltersForm.querySelector('#housing-guests');
 const housingFeatures = mapFiltersForm.querySelector('#housing-features');
 
-const housingPriceRange = {
+const HousingPriceRange = {
   low: {
     min: 0,
     max: 10000,
@@ -34,7 +34,7 @@ const isMatchingHousingRoomsQuantity = (ad) => housingRoomsQuantity.value === DE
 const isMatchingHousingGuestsQuantity = (ad) => housingGuestsQuantity.value === DEFAULT_VALUE ||  ad.offer.guests === Number(housingGuestsQuantity.value);
 
 const isMatchingHousingPrice = (ad) => {
-  const currentHousingPrice = housingPriceRange[housingPrice.value];
+  const currentHousingPrice = HousingPriceRange[housingPrice.value];
 
   return !currentHousingPrice || ad.offer.price >= currentHousingPrice.min && ad.offer.price <= currentHousingPrice.max;
 };
