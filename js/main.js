@@ -14,8 +14,8 @@ import {
 import {addMap} from './map.js';
 import {getData} from './api.js';
 import {setAdFormSubmit} from './set-submit-listener.js';
-
-// const QUANTITY_ADS = 9;
+import {onFilterChange} from './filter.js';
+import {setResetOnForms} from './reset-form.js';
 
 adFormDeactivated();
 mapFiltersFormDeactivated();
@@ -31,6 +31,8 @@ addMap(adFormActivated, mapFiltersFormActivated);
 
 getData((ads) => {
   renderSimilarAd(ads);
+  onFilterChange(ads);
+  setResetOnForms( () => renderSimilarAd(ads) );
 });
 
 setAdFormSubmit();
