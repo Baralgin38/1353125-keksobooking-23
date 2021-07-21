@@ -63,6 +63,10 @@ mainPin.on('moveend', () => {
 const map = L.map(mapContainer);
 const markerGroup = L.layerGroup().addTo(map);
 
+const clearMarkerGroup = () => {
+  markerGroup.clearLayers();
+};
+
 const createPinSimilarAd = (ad, cardAd) => {
   const {lat, lng} = ad.location;
 
@@ -109,4 +113,4 @@ const addMap = (adFormActivated) => {
 };
 
 
-export {addMap, addPinSimilarAdsOnMap, setAddressValue, setMainPinDefaultCoordinates};
+export {addMap, addPinSimilarAdsOnMap, setAddressValue, setMainPinDefaultCoordinates, clearMarkerGroup};
