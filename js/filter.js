@@ -45,8 +45,6 @@ const isMatchingHousingFeatures = (ad) => {
   return Array.from(checkedFeatures).every((currentFeature) => ad.offer.features && ad.offer.features.includes(currentFeature.value));
 };
 
-const debouncedRender = debounce(renderSimilarAd, RENDER_DELAY);
-
 const filterFunctions = [
   isMatchingHousingType,
   isMatchingHousingRoomsQuantity,
@@ -55,11 +53,26 @@ const filterFunctions = [
   isMatchingHousingFeatures,
 ];
 
+// const debouncedRender = debounce(renderSimilarAd, RENDER_DELAY);
+// const onFilterChange = (ads) => {
+//   mapFiltersForm.addEventListener('change', () => {
+//     const filteredAds = ads.filter((ad) => filterFunctions.every((filterFunction) => filterFunction(ad)));
+//     clearMarkerGroup();
+//     debouncedRender(filteredAds);
+//   });
+// };
+
+const filter = (ads) => {
+  const filteredAds = ads.filter((ad) => filterFunctions.every((filterFunction) => filterFunction(ad)));
+  clearMarkerGroup();
+  renderSimilarAd(filteredAds);
+};
+
+const debounceFilter = debounce(filter, RENDER_DELAY);
+
 const onFilterChange = (ads) => {
   mapFiltersForm.addEventListener('change', () => {
-    const filteredAds = ads.filter((ad) => filterFunctions.every((filterFunction) => filterFunction(ad)));
-    clearMarkerGroup();
-    debouncedRender(filteredAds);
+    debounceFilter(ads);
   });
 };
 
