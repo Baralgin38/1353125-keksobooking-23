@@ -1,5 +1,7 @@
 import {addPinSimilarAdsOnMap} from './map.js';
 
+const QUANTITY_ADS = 10;
+
 const getHousingTypeOfAd = (housingType) => {
   switch(housingType) {
     case 'flat':
@@ -111,11 +113,12 @@ const generateCardSimilarAd = ({author, offer}) => {
 };
 
 const renderSimilarAd = (ads) => {
-  ads.forEach((ad) => {
-    const cardAd = generateCardSimilarAd(ad);
+  ads.slice(0, QUANTITY_ADS)
+    .forEach((ad) => {
+      const cardAd = generateCardSimilarAd(ad);
 
-    addPinSimilarAdsOnMap(ad, cardAd);
-  });
+      addPinSimilarAdsOnMap(ad, cardAd);
+    });
 };
 
 export {renderSimilarAd};
