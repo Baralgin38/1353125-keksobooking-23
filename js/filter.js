@@ -5,13 +5,6 @@ import {renderSimilarAd} from './generate-similar-ad.js';
 const DEFAULT_VALUE = 'any';
 const RENDER_DELAY = 500;
 
-const mapFiltersForm = document.querySelector('.map__filters');
-const housingType = mapFiltersForm.querySelector('#housing-type');
-const housingPrice = mapFiltersForm.querySelector('#housing-price');
-const housingRoomsQuantity = mapFiltersForm.querySelector('#housing-rooms');
-const housingGuestsQuantity = mapFiltersForm.querySelector('#housing-guests');
-const housingFeatures = mapFiltersForm.querySelector('#housing-features');
-
 const HOUSING_PRICE_RANGE = {
   low: {
     min: 0,
@@ -26,6 +19,14 @@ const HOUSING_PRICE_RANGE = {
     max: 1000000,
   },
 };
+
+const mapFiltersForm = document.querySelector('.map__filters');
+const housingType = mapFiltersForm.querySelector('#housing-type');
+const housingPrice = mapFiltersForm.querySelector('#housing-price');
+const housingRoomsQuantity = mapFiltersForm.querySelector('#housing-rooms');
+const housingGuestsQuantity = mapFiltersForm.querySelector('#housing-guests');
+const housingFeatures = mapFiltersForm.querySelector('#housing-features');
+
 
 const isMatchingHousingType = (ad) => housingType.value === DEFAULT_VALUE || ad.offer.type === housingType.value;
 

@@ -7,28 +7,28 @@ const DEFAULT_LONGITUDE = 139.692;
 const DEFAULT_ZOOM = 12;
 
 const MainPinInformation = {
-  url: 'img/main-pin.svg',
-  size: [52, 52],
-  anchor: [26, 52],
+  URL: 'img/main-pin.svg',
+  SIZE: [52, 52],
+  ANCHOR: [26, 52],
 };
 
 const PinInformation = {
-  url: 'img/pin.svg',
-  size: [40, 40],
-  anchor: [20, 20],
+  URL: 'img/pin.svg',
+  SIZE: [40, 40],
+  ANCHOR: [20, 20],
 };
 
 const mapContainer = document.querySelector('#map-canvas');
 const mainPinIcon = L.icon({
-  iconUrl: MainPinInformation.url,
-  iconSize: MainPinInformation.size,
-  iconAnchor: MainPinInformation.anchor,
+  iconUrl: MainPinInformation.URL,
+  iconSize: MainPinInformation.SIZE,
+  iconAnchor: MainPinInformation.ANCHOR,
 });
 
 const pinIcon = L.icon ({
-  iconUrl: PinInformation.url,
-  iconSize: PinInformation.size,
-  iconAnchor: PinInformation.anchor,
+  iconUrl: PinInformation.URL,
+  iconSize: PinInformation.SIZE,
+  iconAnchor: PinInformation.ANCHOR,
 });
 
 const mainPin = L.marker(
