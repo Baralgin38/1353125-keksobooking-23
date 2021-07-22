@@ -5,6 +5,8 @@ const SYMBOL_AFTER_DOT = 5;
 const DEFAULT_LATITUDE = 35.6895;
 const DEFAULT_LONGITUDE = 139.692;
 const DEFAULT_ZOOM = 12;
+const LINK_TO_MAP = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const COPYRIGHT = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 const MainPinInformation = {
   URL: 'img/main-pin.svg',
@@ -103,9 +105,9 @@ const addMap = (adFormActivated) => {
     }, DEFAULT_ZOOM);
 
   L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    LINK_TO_MAP,
     {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution: COPYRIGHT,
     },
   ).addTo(map);
 
