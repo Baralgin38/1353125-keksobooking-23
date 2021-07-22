@@ -1,6 +1,5 @@
-import {setAddressValue, setMainPinDefaultCoordinates} from './map.js';
+import {setAddressValue, setMainPinDefaultCoordinates, clearMarkerGroup} from './map.js';
 import {setPriceInputAttribute, setAllowedQuantityGuests} from './form.js';
-import {clearMarkerGroup} from './map.js';
 
 const adForm = document.querySelector('.ad-form');
 const mapFiltersForm = document.querySelector('.map__filters');
