@@ -21,9 +21,7 @@ const timeOut = adForm.querySelector('#timeout');
 
 const changeStatusFormElements = (form, element, status) => {
   const formFieldset = form.querySelectorAll(element);
-  for(let i = 0; i < formFieldset.length; i++) {
-    formFieldset[i].disabled = status;
-  }
+  formFieldset.forEach((value) => value.disabled = status);
 };
 
 const adFormActivated = () => {
