@@ -77,30 +77,40 @@ const addPhotoOnCardAd = (parentElement, photos) => {
 const cardAdTemplateContent = document.querySelector('#card').content;
 const cardAdTemplate = cardAdTemplateContent.querySelector('.popup');
 
+const changeTextContentForCardAdElement = (objectProperty, cardAdElement, value) => {
+  if (objectProperty) {
+    cardAdElement.textContent = value;
+  } else {
+    cardAdElement.remove();
+  }
+};
+const changeSrcForCardAdElement = (objectProperty, cardAdElement, value) => {
+  if (objectProperty) {
+    cardAdElement.src = value;
+  } else {
+    cardAdElement.remove();
+  }
+};
+
 const generateCardSimilarAd = ({author, offer}) => {
   const cardAd = cardAdTemplate.cloneNode(true);
   const cardAdFeatures = cardAd.querySelector('.popup__features');
-  const cardAdDescription = cardAd.querySelector('.popup__description');
   const cardAdPhotos = cardAd.querySelector('.popup__photos');
 
-  cardAd.querySelector('.popup__title').textContent = offer.title;
-  cardAd.querySelector('.popup__text--address').textContent = offer.address;
-  cardAd.querySelector('.popup__text--price').textContent = `${offer.price}  ₽/ночь`;
-  cardAd.querySelector('.popup__type').textContent = getHousingTypeOfAd(offer.type);
-  cardAd.querySelector('.popup__text--capacity').textContent = `${getQuantityRooms(offer.rooms)} для ${getQuantityGuests(offer.guests)}`;
-  cardAd.querySelector('.popup__text--time').textContent = `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
-  cardAd.querySelector('.popup__avatar').src = author.avatar;
+  changeTextContentForCardAdElement(offer.title, cardAd.querySelector('.popup__title'), offer.title);
+  changeTextContentForCardAdElement(offer.address, cardAd.querySelector('.popup__text--address'), offer.address);
+  changeTextContentForCardAdElement(offer.price, cardAd.querySelector('.popup__text--price'), `${offer.price}  ₽/ночь`);
+  changeTextContentForCardAdElement(offer.type, cardAd.querySelector('.popup__type'), getHousingTypeOfAd(offer.type));
+  changeTextContentForCardAdElement(offer.rooms, cardAd.querySelector('.popup__text--capacity'), `${getQuantityRooms(offer.rooms)} для ${getQuantityGuests(offer.guests)}`);
+  changeTextContentForCardAdElement(offer.checkin, cardAd.querySelector('.popup__text--time'), `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`);
+  changeTextContentForCardAdElement(offer.description, cardAd.querySelector('.popup__description'), offer.description);
+
+  changeSrcForCardAdElement(author.avatar, cardAd.querySelector('.popup__avatar'), author.avatar);
 
   if(offer.features && offer.features.length > 0) {
     addFeaturesOnCardAd(cardAdFeatures, offer.features);
   } else {
     cardAdFeatures.remove();
-  }
-
-  if (!offer.description) {
-    cardAdDescription.remove();
-  } else {
-    cardAdDescription.textContent = offer.description;
   }
 
   if(offer.photos && offer.photos.length > 0) {
