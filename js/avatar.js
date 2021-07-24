@@ -2,6 +2,7 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const avatarChooser = document.querySelector('#avatar');
 const preview = document.querySelector('.ad-form-header__preview img');
+const defaultSrc = preview.src;
 
 const setPreviewUserPhoto = () => {
   avatarChooser.addEventListener('change', () => {
@@ -22,4 +23,8 @@ const setPreviewUserPhoto = () => {
   });
 };
 
-export {setPreviewUserPhoto};
+const clearAvatarPreview = () => {
+  preview.src = defaultSrc;
+};
+
+export {setPreviewUserPhoto, clearAvatarPreview};

@@ -28,4 +28,8 @@ const setPreviewAdPhoto = () => {
   });
 };
 
-export {setPreviewAdPhoto};
+const clearAdPhotoPreview = () => {
+  adPhotoContainer.removeChild(adPhotoContainer.firstChild);
+};
+
+export {setPreviewAdPhoto, clearAdPhotoPreview};
