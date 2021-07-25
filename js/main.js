@@ -16,6 +16,8 @@ import {getData} from './api.js';
 import {setAdFormSubmit} from './set-submit-listener.js';
 import {onFilterChange} from './filter.js';
 import {setResetOnForms} from './reset-form.js';
+import {setPreviewUserPhoto} from './avatar.js';
+import {setPreviewAdPhoto} from './ad-photo.js';
 
 adFormDeactivated();
 mapFiltersFormDeactivated();
@@ -28,6 +30,9 @@ changeTimeOut();
 changeTimeIn();
 
 addMap(adFormActivated, mapFiltersFormActivated);
+
+setPreviewUserPhoto();
+setPreviewAdPhoto();
 
 getData((ads) => {
   renderSimilarAd(ads);
